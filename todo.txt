@@ -1,0 +1,24 @@
+Creating Book objects
+- books stored in array
+- need constructor for books
+- add separate function:
+-- create book from arguments
+-- store new book object into array
+-- all book objects have unique id
+--- generate using crypto.randomUUID()
+
+Display Function
+- loop through array and display each book on page
+- keep book structure and book display separate entities
+
+New Book button
+- brings up input form to add new book to library
+- can use dialogs/modals
+- consider using event.preventDefault(); for submit button
+
+Remove button
+- associate DOM elements with book objects
+- consider using data-attribute that corresponds to unique book id of respective book object
+
+Add button to change read status
+- create Book prototype function that toggles book instance's "read" status
