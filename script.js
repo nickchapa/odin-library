@@ -5,21 +5,36 @@
 // button: remove book
 // button: change read status
 
-const body = document.getElementsByName("body");
+const body = document.querySelector("body");
 const addBookBtn = document.getElementById("add-book");
 const removeBookBtn = document.getElementById("remove-book");
+const container = document.querySelector(".container");
+container.textContent = "testing";
 
 const bookArray = [];
+
+function createToggleBtn(title) {
+    const btn = document.createElement("button");
+    container.append(btn);
+    btn.textContent = title;
+}
 
 function Book(title, author, pages, read){
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.read = read;
+    this.id = crypto.randomUUID();
 }
 
 Book.prototype.getInfo = function() {
     return `Title: ${this.title}, Author: ${this.author}, Pages: ${this.pages}, Read Status: ${this.read}`;
+}
+
+Book.prototype.toggleRead = function() {
+    if (this.read === true) this.read === false;
+    else this.read === true;
+    console.log(this.read);
 }
 
 const theHobbit = new Book("The Hobbit", "J.R.R. Tolkien", 310, true);
@@ -38,11 +53,10 @@ bookArray.push(theReturnoftheKing);
 for (const book of bookArray) {
     newP = document.createElement("p");
     newP.textContent = book.getInfo();
-    document.body.append(newP);
+    container.append(newP);
     console.log(book.getInfo());
+    createToggleBtn(book.title);
 }
-
-
 
 // button: new book
 // input field for new book info
