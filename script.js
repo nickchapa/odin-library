@@ -13,12 +13,6 @@ container.textContent = "testing";
 
 const bookArray = [];
 
-function createToggleBtn(title) {
-    const btn = document.createElement("button");
-    container.append(btn);
-    btn.textContent = title;
-}
-
 function Book(title, author, pages, read){
     this.title = title;
     this.author = author;
@@ -35,6 +29,14 @@ Book.prototype.toggleRead = function() {
     if (this.read === true) this.read === false;
     else this.read === true;
     console.log(this.read);
+}
+
+Book.prototype.createToggleBtn = function(title) {
+    const btn = document.createElement("button");
+    this.btn = btn;
+    container.append(btn);
+    btn.textContent = title;
+    btn.setAttribute("data-id", this.id);
 }
 
 const theHobbit = new Book("The Hobbit", "J.R.R. Tolkien", 310, true);
@@ -55,7 +57,11 @@ for (const book of bookArray) {
     newP.textContent = book.getInfo();
     container.append(newP);
     console.log(book.getInfo());
-    createToggleBtn(book.title);
+    book.createToggleBtn(book.title);
+
+    book.btn.addEventListener("click", (e) => {
+        console.log(book.id);
+    })
 }
 
 // button: new book
