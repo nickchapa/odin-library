@@ -90,14 +90,3 @@ addBookBtn.addEventListener("click", (e) => {
     console.log(bookArray);
     event.preventDefault();
 })
-
-// button: remove book
-// next to specific book
-removeBookBtn.textContent = "remove book";
-removeBookBtn.addEventListener("click", (e) => {
-    bookArray.pop();
-    console.log(bookArray);
-})
-
-// button: change read status
-// next to specific book
