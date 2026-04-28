@@ -9,7 +9,6 @@ const body = document.querySelector("body");
 const addBookBtn = document.getElementById("add-book");
 const removeBookBtn = document.getElementById("remove-book");
 const container = document.querySelector(".container");
-container.textContent = "testing";
 
 const bookArray = [];
 
