@@ -39,6 +39,13 @@ Book.prototype.createToggleBtn = function() {
     btn.setAttribute("data-id", this.id);
 }
 
+Book.prototype.createRemoveBtn = function() {
+    const removeBtn = document.createElement("button");
+    this.removeBtn = removeBtn;
+    container.append(this.removeBtn);
+    this.removeBtn.textContent = "Remove";
+}
+
 const theHobbit = new Book("The Hobbit", "J.R.R. Tolkien", 310, true);
 
 const theFellowshipoftheRing = new Book("The Fellowship of the Ring", "J.R.R. Tolkien", 423, true);
@@ -62,6 +69,14 @@ for (const book of bookArray) {
     book.btn.addEventListener("click", (e) => {
         book.toggleRead();
         book.newP.textContent = book.getInfo();
+    })
+
+    book.createRemoveBtn();
+    book.removeBtn.addEventListener("click", (e) => {
+        console.log(`remove btn clicked for ${book.title}`);
+        book.newP.remove();
+        book.btn.remove();
+        book.removeBtn.remove();
     })
 }
 
