@@ -76,7 +76,21 @@ for (const book of bookArray) {
         book.newP.remove();
         book.btn.remove();
         book.removeBtn.remove();
+        const bookIndex = findBookIndex(book);
+        bookArray.splice(bookIndex, 1);
     })
+}
+
+function findBookIndex(book){
+    // const bookIndex = bookArray.findIndex((element) => 
+    //     element.id === book.id);
+    const bookIndex = bookArray.findIndex(checkId, book);
+    return bookIndex;
+}
+
+function checkId(element) {
+    console.log(`book.id: ${this.id}`);
+    return element.id === this.id;
 }
 
 // button: new book
