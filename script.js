@@ -43,6 +43,15 @@ Book.prototype.createRemoveBtn = function() {
     this.removeBtn = removeBtn;
     container.append(this.removeBtn);
     this.removeBtn.textContent = "Remove";
+
+    this.removeBtn.addEventListener("click", (e) => {
+        console.log(`remove btn clicked for ${this.title}`);
+        this.newP.remove();
+        this.btn.remove();
+        this.removeBtn.remove();
+        const bookIndex = findBookIndex(this);
+        bookArray.splice(bookIndex, 1);
+    })
 }
 
 const theHobbit = new Book("The Hobbit", "J.R.R. Tolkien", 310, true);
@@ -71,14 +80,6 @@ for (const book of bookArray) {
     })
 
     book.createRemoveBtn();
-    book.removeBtn.addEventListener("click", (e) => {
-        console.log(`remove btn clicked for ${book.title}`);
-        book.newP.remove();
-        book.btn.remove();
-        book.removeBtn.remove();
-        const bookIndex = findBookIndex(book);
-        bookArray.splice(bookIndex, 1);
-    })
 }
 
 function findBookIndex(book){
