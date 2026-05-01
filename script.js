@@ -39,6 +39,11 @@ Book.prototype.createToggleBtn = function() {
     container.append(btn);
     btn.textContent = "status btn";
     btn.setAttribute("data-id", this.id);
+
+    this.btn.addEventListener("click", (e) => {
+        this.toggleRead();
+        this.newP.textContent = this.getInfo();
+    })
 }
 
 Book.prototype.createRemoveBtn = function() {
@@ -77,10 +82,10 @@ for (const book of bookArray) {
     console.log(book.getInfo());
     book.createToggleBtn();
 
-    book.btn.addEventListener("click", (e) => {
-        book.toggleRead();
-        book.newP.textContent = book.getInfo();
-    })
+    // book.btn.addEventListener("click", (e) => {
+    //     book.toggleRead();
+    //     book.newP.textContent = book.getInfo();
+    // })
 
     book.createRemoveBtn();
 }
