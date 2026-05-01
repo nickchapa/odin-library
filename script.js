@@ -34,15 +34,14 @@ Book.prototype.toggleRead = function() {
 }
 
 Book.prototype.createToggleBtn = function() {
-    const btn = document.createElement("button");
-    this.btn = btn;
-    container.append(btn);
-    btn.textContent = "status btn";
-    btn.setAttribute("data-id", this.id);
+    this.toggleBtn = document.createElement("button");
+    container.append(this.toggleBtn);
+    this.toggleBtn.textContent = "status btn";
+    this.toggleBtn.setAttribute("data-id", this.id);
 
-    this.btn.addEventListener("click", (e) => {
+    this.toggleBtn.addEventListener("click", (e) => {
         this.toggleRead();
-        this.newP.textContent = this.getInfo();
+        this.bookDisplay.textContent = this.getInfo();
     })
 }
 
@@ -54,8 +53,8 @@ Book.prototype.createRemoveBtn = function() {
 
     this.removeBtn.addEventListener("click", (e) => {
         console.log(`remove btn clicked for ${this.title}`);
-        this.newP.remove();
-        this.btn.remove();
+        this.bookDisplay.remove();
+        this.toggleBtn.remove();
         this.removeBtn.remove();
         const bookIndex = findBookIndex(this);
         bookArray.splice(bookIndex, 1);
@@ -76,9 +75,9 @@ bookArray.push(theTwoTowers);
 bookArray.push(theReturnoftheKing);
 
 for (const book of bookArray) {
-    book.newP = document.createElement("p");
-    book.newP.textContent = book.getInfo();
-    container.append(book.newP);
+    book.bookDisplay = document.createElement("p");
+    book.bookDisplay.textContent = book.getInfo();
+    container.append(book.bookDisplay);
     console.log(book.getInfo());
     book.createToggleBtn();
 
@@ -116,9 +115,9 @@ addBookBtn.addEventListener("click", (e) => {
     // create new element
     // add book to text content
     // append to container
-    const bookDisplay = document.createElement("p");
-    bookDisplay.textContent = `Title: ${newBook.title}, Author: ${newBook.author}, Pages: ${newBook.pages}, Read Status: ${newBook.read}`;
-    container.append(bookDisplay);
+    newBook.bookDisplay = document.createElement("p");
+    newBook.bookDisplay.textContent = `Title: ${newBook.title}, Author: ${newBook.author}, Pages: ${newBook.pages}, Read Status: ${newBook.read}`;
+    container.append(newBook.bookDisplay);
     newBook.createToggleBtn();
     newBook.createRemoveBtn();
     
