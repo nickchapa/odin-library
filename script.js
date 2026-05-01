@@ -119,6 +119,8 @@ addBookBtn.addEventListener("click", (e) => {
     const bookDisplay = document.createElement("p");
     bookDisplay.textContent = `Title: ${newBook.title}, Author: ${newBook.author}, Pages: ${newBook.pages}, Read Status: ${newBook.read}`;
     container.append(bookDisplay);
+    newBook.createToggleBtn();
+    newBook.createRemoveBtn();
     
     event.preventDefault();
 })
