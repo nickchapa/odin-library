@@ -10,6 +10,9 @@ const addBookBtn = document.getElementById("add-book");
 const removeBookBtn = document.getElementById("remove-book");
 const container = document.querySelector(".container");
 
+// input
+const newBookTitle = document.querySelector("#new-book-title");
+
 const bookArray = [];
 
 function Book(title, author, pages, read){
@@ -99,9 +102,18 @@ function checkId(element) {
 // push new book to array when button clicked
 addBookBtn.textContent = "add book";
 addBookBtn.addEventListener("click", (e) => {
-    console.log("button clicked")
-    const newBookEx = new Book("")
-    bookArray.push("book");
-    console.log(bookArray);
+    // put input values into Book constructor
+    // push to bookArray
+    const newBook = new Book(newBookTitle.value, "rina", 120, true);
+    bookArray.push(newBook);
+
+    // display info:
+    // create new element
+    // add book to text content
+    // append to container
+    const bookDisplay = document.createElement("p");
+    bookDisplay.textContent = `Title: ${newBook.title}, Author: ${newBook.author}, Pages: ${newBook.pages}, Read Status: ${newBook.read}`;
+    container.append(bookDisplay);
+    
     event.preventDefault();
 })
