@@ -93,11 +93,11 @@ function findBookIndex(book){
     // const bookIndex = bookArray.findIndex((element) => 
     //     element.id === book.id);
     const bookIndex = bookArray.findIndex(checkId, book);
+    console.log(bookArray[bookIndex].id);
     return bookIndex;
 }
 
 function checkId(element) {
-    console.log(`book.id: ${this.id}`);
     return element.id === this.id;
 }
 
