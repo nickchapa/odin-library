@@ -12,6 +12,9 @@ const container = document.querySelector(".container");
 
 // input
 const newBookTitle = document.querySelector("#new-book-title");
+const newBookAuthor = document.querySelector("#new-book-author");
+const newBookPages = document.querySelector("#new-book-pages");
+const newBookStatus = document.querySelector("#new-book-status");
 
 const bookArray = [];
 
@@ -108,7 +111,7 @@ addBookBtn.textContent = "add book";
 addBookBtn.addEventListener("click", (e) => {
     // put input values into Book constructor
     // push to bookArray
-    const newBook = new Book(newBookTitle.value, "rina", 120, true);
+    const newBook = new Book(newBookTitle.value, newBookAuthor.value, newBookPages.value, newBookStatus.checked);
     bookArray.push(newBook);
 
     // display info:
