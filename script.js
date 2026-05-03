@@ -40,20 +40,20 @@ Book.prototype.toggleRead = function() {
 
 Book.prototype.createToggleBtn = function() {
     this.toggleBtn = document.createElement("button");
-    container.append(this.toggleBtn);
+    this.bookDisplay.append(this.toggleBtn);
     this.toggleBtn.textContent = "status btn";
-    this.toggleBtn.setAttribute("data-id", this.id);
+    //this.toggleBtn.setAttribute("data-id", this.id);
 
     this.toggleBtn.addEventListener("click", (e) => {
         this.toggleRead();
-        this.bookDisplay.textContent = this.getInfo();
+        this.bookStatusDiv.textContent = `Status: ${this.read}`;
     })
 }
 
 Book.prototype.createRemoveBtn = function() {
     const removeBtn = document.createElement("button");
     this.removeBtn = removeBtn;
-    container.append(this.removeBtn);
+    this.bookDisplay.append(this.removeBtn);
     this.removeBtn.textContent = "Remove";
 
     this.removeBtn.addEventListener("click", (e) => {
@@ -120,9 +120,31 @@ addBookBtn.addEventListener("click", (e) => {
     // create new element
     // add book to text content
     // append to container
-    newBook.bookDisplay = document.createElement("p");
-    newBook.bookDisplay.textContent = `Title: ${newBook.title}, Author: ${newBook.author}, Pages: ${newBook.pages}, Read Status: ${newBook.read}`;
+    newBook.bookDisplay = document.createElement("div");
+
+    newBook.bookTitleDiv = document.createElement("div");
+    newBook.bookAuthorDiv = document.createElement("div");
+    newBook.bookPagesDiv = document.createElement("div");
+    newBook.bookStatusDiv = document.createElement("div");
+    
+    newBook.bookTitleDiv.textContent = `Title: ${newBook.title}`;
+    newBook.bookAuthorDiv.textContent = `Author: ${newBook.author}`;
+    newBook.bookPagesDiv.textContent = `Pages: ${newBook.pages}`;
+    newBook.bookStatusDiv.textContent = `Status: ${newBook.read}`;
+    
     container.append(newBook.bookDisplay);
+    newBook.bookDisplay.append(newBook.bookTitleDiv);
+    newBook.bookDisplay.append(newBook.bookAuthorDiv);
+    newBook.bookDisplay.append(newBook.bookPagesDiv);
+    newBook.bookDisplay.append(newBook.bookStatusDiv);
+
+    newBook.bookDisplay.setAttribute("class", "book-card");
+
+    newBook.bookTitleDiv.setAttribute("class", "book-title-div");
+    newBook.bookAuthorDiv.setAttribute("class", "book-author-div");
+    newBook.bookPagesDiv.setAttribute("class", "book-pages-div");
+    newBook.bookStatusDiv.setAttribute("class", "book-status-div");
+        
     newBook.createToggleBtn();
     newBook.createRemoveBtn();
     formDialog.hidePopover();
