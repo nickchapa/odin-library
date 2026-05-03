@@ -16,6 +16,8 @@ const newBookAuthor = document.querySelector("#new-book-author");
 const newBookPages = document.querySelector("#new-book-pages");
 const newBookStatus = document.querySelector("#new-book-status");
 
+const formDialog = document.querySelector("#form-dialog");
+
 const bookArray = [];
 
 function Book(title, author, pages, read){
@@ -107,7 +109,7 @@ function checkId(element) {
 // button: new book
 // input field for new book info
 // push new book to array when button clicked
-addBookBtn.textContent = "add book";
+addBookBtn.textContent = "Add";
 addBookBtn.addEventListener("click", (e) => {
     // put input values into Book constructor
     // push to bookArray
@@ -123,6 +125,7 @@ addBookBtn.addEventListener("click", (e) => {
     container.append(newBook.bookDisplay);
     newBook.createToggleBtn();
     newBook.createRemoveBtn();
-    
+    formDialog.hidePopover();
+
     event.preventDefault();
 })
