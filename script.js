@@ -1,10 +1,3 @@
-// Book object constructor
-// store books in array
-// display each book
-// button: new book
-// button: remove book
-// button: change read status
-
 const body = document.querySelector("body");
 const addBookBtn = document.getElementById("add-book");
 const removeBookBtn = document.getElementById("remove-book");
@@ -42,7 +35,6 @@ Book.prototype.createToggleBtn = function() {
     this.toggleBtn = document.createElement("button");
     this.bookDisplay.append(this.toggleBtn);
     this.toggleBtn.textContent = "status btn";
-    //this.toggleBtn.setAttribute("data-id", this.id);
 
     this.toggleBtn.addEventListener("click", (e) => {
         this.toggleRead();
@@ -85,18 +77,10 @@ for (const book of bookArray) {
     container.append(book.bookDisplay);
     console.log(book.getInfo());
     book.createToggleBtn();
-
-    // book.btn.addEventListener("click", (e) => {
-    //     book.toggleRead();
-    //     book.newP.textContent = book.getInfo();
-    // })
-
     book.createRemoveBtn();
 }
 
 function findBookIndex(book){
-    // const bookIndex = bookArray.findIndex((element) => 
-    //     element.id === book.id);
     const bookIndex = bookArray.findIndex(checkId, book);
     console.log(bookArray[bookIndex].id);
     return bookIndex;
@@ -106,20 +90,16 @@ function checkId(element) {
     return element.id === this.id;
 }
 
-// button: new book
-// input field for new book info
-// push new book to array when button clicked
 addBookBtn.textContent = "Add";
 addBookBtn.addEventListener("click", (e) => {
-    // put input values into Book constructor
-    // push to bookArray
+    newBook();
+    event.preventDefault();
+})
+
+function newBook() {
     const newBook = new Book(newBookTitle.value, newBookAuthor.value, newBookPages.value, newBookStatus.checked);
     bookArray.push(newBook);
 
-    // display info:
-    // create new element
-    // add book to text content
-    // append to container
     newBook.bookDisplay = document.createElement("div");
 
     newBook.bookTitleDiv = document.createElement("div");
@@ -144,10 +124,8 @@ addBookBtn.addEventListener("click", (e) => {
     newBook.bookAuthorDiv.setAttribute("class", "book-author-div");
     newBook.bookPagesDiv.setAttribute("class", "book-pages-div");
     newBook.bookStatusDiv.setAttribute("class", "book-status-div");
-        
+
     newBook.createToggleBtn();
     newBook.createRemoveBtn();
     formDialog.hidePopover();
-
-    event.preventDefault();
-})
+}
