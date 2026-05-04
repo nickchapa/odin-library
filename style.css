@@ -1,3 +1,25 @@
+.card-container {
+    border: 5px solid pink;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
 .book-card {
     border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+}
+
+.btn-div {
+    display: flex;
+    justify-content: space-between;
+    border: 2px solid blue;
+}
+
+.status-btn {
+    border: 1px solid pink;
+}
+
+.remove-btn {
+    border: 1px solid pink;
 }

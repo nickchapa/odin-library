@@ -33,6 +33,7 @@ Book.prototype.toggleRead = function() {
 
 Book.prototype.createToggleBtn = function() {
     this.toggleBtn = document.createElement("button");
+    this.toggleBtn.setAttribute("class", "status-btn");
     this.bookDisplay.append(this.toggleBtn);
     this.toggleBtn.textContent = "status btn";
 
@@ -43,8 +44,8 @@ Book.prototype.createToggleBtn = function() {
 }
 
 Book.prototype.createRemoveBtn = function() {
-    const removeBtn = document.createElement("button");
-    this.removeBtn = removeBtn;
+    this.removeBtn = document.createElement("button");
+    this.removeBtn.setAttribute("class", "remove-btn");
     this.bookDisplay.append(this.removeBtn);
     this.removeBtn.textContent = "Remove";
 
@@ -126,6 +127,12 @@ function newBook(book) {
 
     newBook.createToggleBtn();
     newBook.createRemoveBtn();
+
+    newBook.btnDiv = document.createElement("div");
+    newBook.btnDiv.setAttribute("class", "btn-div");
+    newBook.bookDisplay.append(newBook.btnDiv);
+    newBook.btnDiv.append(newBook.toggleBtn);
+    newBook.btnDiv.append(newBook.removeBtn);
     formDialog.hidePopover();
 }
 
