@@ -1,7 +1,7 @@
 const body = document.querySelector("body");
 const addBookBtn = document.getElementById("add-book");
 const removeBookBtn = document.getElementById("remove-book");
-const container = document.querySelector(".container");
+const cardContainer = document.querySelector(".card-container");
 
 // input
 const newBookTitle = document.querySelector("#new-book-title");
@@ -69,7 +69,7 @@ const theReturnoftheKing = new Book("The Return of the King", "J.R.R. Tolkien", 
 for (const book of bookArray) {
     book.bookDisplay = document.createElement("p");
     book.bookDisplay.textContent = book.getInfo();
-    container.append(book.bookDisplay);
+    cardContainer.append(book.bookDisplay);
     console.log(book.getInfo());
     book.createToggleBtn();
     book.createRemoveBtn();
@@ -111,7 +111,7 @@ function newBook(book) {
     newBook.bookPagesDiv.textContent = `Pages: ${newBook.pages}`;
     newBook.bookStatusDiv.textContent = `Status: ${newBook.read}`;
     
-    container.append(newBook.bookDisplay);
+    cardContainer.append(newBook.bookDisplay);
     newBook.bookDisplay.append(newBook.bookTitleDiv);
     newBook.bookDisplay.append(newBook.bookAuthorDiv);
     newBook.bookDisplay.append(newBook.bookPagesDiv);
