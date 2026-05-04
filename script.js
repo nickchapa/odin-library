@@ -66,11 +66,6 @@ const theTwoTowers = new Book("The Two Towers", "J.R.R. Tolkien", 352, true);
 
 const theReturnoftheKing = new Book("The Return of the King", "J.R.R. Tolkien", 416, true);
 
-bookArray.push(theHobbit);
-bookArray.push(theFellowshipoftheRing);
-bookArray.push(theTwoTowers);
-bookArray.push(theReturnoftheKing);
-
 for (const book of bookArray) {
     book.bookDisplay = document.createElement("p");
     book.bookDisplay.textContent = book.getInfo();
@@ -96,8 +91,12 @@ addBookBtn.addEventListener("click", (e) => {
     event.preventDefault();
 })
 
-function newBook() {
-    const newBook = new Book(newBookTitle.value, newBookAuthor.value, newBookPages.value, newBookStatus.checked);
+function newBook(book) {
+    let newBook;
+    if(!book){
+        newBook = new Book(newBookTitle.value, newBookAuthor.value, newBookPages.value, newBookStatus.checked);
+    } else newBook = book;
+    
     bookArray.push(newBook);
 
     newBook.bookDisplay = document.createElement("div");
@@ -129,3 +128,8 @@ function newBook() {
     newBook.createRemoveBtn();
     formDialog.hidePopover();
 }
+
+newBook(theHobbit);
+newBook(theFellowshipoftheRing);
+newBook(theTwoTowers);
+newBook(theReturnoftheKing);
