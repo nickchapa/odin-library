@@ -13,22 +13,22 @@ const formDialog = document.querySelector("#form-dialog");
 
 const bookArray = [];
 
-function Book(title, author, pages, read){
+function Book(title, author, pages, status){
     this.title = title;
     this.author = author;
     this.pages = pages;
-    this.read = read;
+    this.status = status;
     this.id = crypto.randomUUID();
 }
 
 Book.prototype.getInfo = function() {
-    return `Title: ${this.title}, Author: ${this.author}, Pages: ${this.pages}, Read Status: ${this.read}`;
+    return `Title: ${this.title}, Author: ${this.author}, Pages: ${this.pages}, Read Status: ${this.status}`;
 }
 
-Book.prototype.toggleRead = function() {
-    if (this.read === true) this.read = false;
-    else this.read = true;
-    console.log(`toggled book: ${this.title} status: ${this.read}`);
+Book.prototype.toggleStatus = function() {
+    if (this.status === true) this.status = false;
+    else this.status = true;
+    console.log(`toggled book: ${this.title} status: ${this.status}`);
 }
 
 Book.prototype.createToggleBtn = function() {
@@ -38,8 +38,8 @@ Book.prototype.createToggleBtn = function() {
     this.toggleBtn.textContent = "status btn";
 
     this.toggleBtn.addEventListener("click", (e) => {
-        this.toggleRead();
-        this.bookStatusDiv.textContent = `Status: ${this.read}`;
+        this.toggleStatus();
+        this.bookStatusDiv.textContent = `Status: ${this.status}`;
     })
 }
 
@@ -110,7 +110,7 @@ function newBook(book) {
     newBook.bookTitleDiv.textContent = `Title: ${newBook.title}`;
     newBook.bookAuthorDiv.textContent = `Author: ${newBook.author}`;
     newBook.bookPagesDiv.textContent = `Pages: ${newBook.pages}`;
-    newBook.bookStatusDiv.textContent = `Status: ${newBook.read}`;
+    newBook.bookStatusDiv.textContent = `Status: ${newBook.status}`;
     
     cardContainer.append(newBook.bookDisplay);
     newBook.bookDisplay.append(newBook.bookTitleDiv);
