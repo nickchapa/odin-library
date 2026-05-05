@@ -1,9 +1,7 @@
 const body = document.querySelector("body");
 const addBookBtn = document.getElementById("add-book");
-const removeBookBtn = document.getElementById("remove-book");
 const cardContainer = document.querySelector(".card-container");
 
-// input
 const newBookTitle = document.querySelector("#new-book-title");
 const newBookAuthor = document.querySelector("#new-book-author");
 const newBookPages = document.querySelector("#new-book-pages");
