@@ -33,7 +33,7 @@ Book.prototype.createToggleBtn = function() {
     this.toggleBtn = document.createElement("button");
     this.toggleBtn.setAttribute("class", "status-btn");
     this.bookDisplay.append(this.toggleBtn);
-    this.toggleBtn.textContent = "status btn";
+    this.toggleBtn.textContent = "Update Status";
 
     this.toggleBtn.addEventListener("click", (e) => {
         this.toggleStatus();
