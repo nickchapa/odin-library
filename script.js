@@ -75,13 +75,9 @@ for (const book of library) {
 }
 
 function findBookIndex(book){
-    const bookIndex = library.findIndex(checkId, book);
+    const bookIndex = library.findIndex((element) => element.id === book.id)
     console.log(library[bookIndex].id);
     return bookIndex;
-}
-
-function checkId(element) {
-    return element.id === this.id;
 }
 
 addBookBtn.textContent = "Add";
