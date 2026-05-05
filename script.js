@@ -9,7 +9,7 @@ const newBookStatus = document.querySelector("#new-book-status");
 
 const formDialog = document.querySelector("#form-dialog");
 
-const bookArray = [];
+const library = [];
 
 function Book(title, author, pages, status){
     this.title = title;
@@ -32,7 +32,7 @@ Book.prototype.toggleStatus = function() {
 Book.prototype.createToggleBtn = function() {
     this.toggleBtn = document.createElement("button");
     this.toggleBtn.setAttribute("class", "status-btn");
-    this.bookDisplay.append(this.toggleBtn);
+    this.bookCard.append(this.toggleBtn);
     this.toggleBtn.textContent = "Update Status";
 
     this.toggleBtn.addEventListener("click", (e) => {
@@ -44,16 +44,16 @@ Book.prototype.createToggleBtn = function() {
 Book.prototype.createRemoveBtn = function() {
     this.removeBtn = document.createElement("button");
     this.removeBtn.setAttribute("class", "remove-btn");
-    this.bookDisplay.append(this.removeBtn);
+    this.bookCard.append(this.removeBtn);
     this.removeBtn.textContent = "Remove";
 
     this.removeBtn.addEventListener("click", (e) => {
         console.log(`remove btn clicked for ${this.title}`);
-        this.bookDisplay.remove();
+        this.bookCard.remove();
         this.toggleBtn.remove();
         this.removeBtn.remove();
         const bookIndex = findBookIndex(this);
-        bookArray.splice(bookIndex, 1);
+        library.splice(bookIndex, 1);
     })
 }
 
@@ -65,18 +65,18 @@ const theTwoTowers = new Book("The Two Towers", "J.R.R. Tolkien", 352, true);
 
 const theReturnoftheKing = new Book("The Return of the King", "J.R.R. Tolkien", 416, true);
 
-for (const book of bookArray) {
-    book.bookDisplay = document.createElement("p");
-    book.bookDisplay.textContent = book.getInfo();
-    cardContainer.append(book.bookDisplay);
+for (const book of library) {
+    book.bookCard = document.createElement("p");
+    book.bookCard.textContent = book.getInfo();
+    cardContainer.append(book.bookCard);
     console.log(book.getInfo());
     book.createToggleBtn();
     book.createRemoveBtn();
 }
 
 function findBookIndex(book){
-    const bookIndex = bookArray.findIndex(checkId, book);
-    console.log(bookArray[bookIndex].id);
+    const bookIndex = library.findIndex(checkId, book);
+    console.log(library[bookIndex].id);
     return bookIndex;
 }
 
@@ -96,9 +96,9 @@ function newBook(book) {
         newBook = new Book(newBookTitle.value, newBookAuthor.value, newBookPages.value, newBookStatus.checked);
     } else newBook = book;
     
-    bookArray.push(newBook);
+    library.push(newBook);
 
-    newBook.bookDisplay = document.createElement("div");
+    newBook.bookCard = document.createElement("div");
 
     newBook.bookTitleDiv = document.createElement("div");
     newBook.bookAuthorDiv = document.createElement("div");
@@ -110,13 +110,13 @@ function newBook(book) {
     newBook.bookPagesDiv.textContent = `Pages: ${newBook.pages}`;
     newBook.bookStatusDiv.textContent = `Status: ${newBook.status}`;
     
-    cardContainer.append(newBook.bookDisplay);
-    newBook.bookDisplay.append(newBook.bookTitleDiv);
-    newBook.bookDisplay.append(newBook.bookAuthorDiv);
-    newBook.bookDisplay.append(newBook.bookPagesDiv);
-    newBook.bookDisplay.append(newBook.bookStatusDiv);
+    cardContainer.append(newBook.bookCard);
+    newBook.bookCard.append(newBook.bookTitleDiv);
+    newBook.bookCard.append(newBook.bookAuthorDiv);
+    newBook.bookCard.append(newBook.bookPagesDiv);
+    newBook.bookCard.append(newBook.bookStatusDiv);
 
-    newBook.bookDisplay.setAttribute("class", "book-card");
+    newBook.bookCard.setAttribute("class", "book-card");
 
     newBook.bookTitleDiv.setAttribute("class", "book-title-div");
     newBook.bookAuthorDiv.setAttribute("class", "book-author-div");
@@ -128,7 +128,7 @@ function newBook(book) {
 
     newBook.btnDiv = document.createElement("div");
     newBook.btnDiv.setAttribute("class", "btn-div");
-    newBook.bookDisplay.append(newBook.btnDiv);
+    newBook.bookCard.append(newBook.btnDiv);
     newBook.btnDiv.append(newBook.toggleBtn);
     newBook.btnDiv.append(newBook.removeBtn);
     formDialog.hidePopover();
