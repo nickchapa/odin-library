@@ -31,8 +31,15 @@ Book.prototype.getInfo = function() {
 Book.prototype.toggleStatus = function() {
     if (this.status === true) this.status = false;
     else this.status = true;
+}
 
-    this.bookStatusDiv.textContent = `Status: ${this.status}`;
+function createBtn(book, className, textContent) {
+    const btn = document.createElement("button");
+    btn.setAttribute("class", className)
+    book.bookCard.append(btn);
+    btn.textContent = textContent;
+
+    return btn;
 }
 
 Book.prototype.createToggleBtn = function() {
@@ -57,6 +64,30 @@ Book.prototype.createRemoveBtn = function() {
         this.toggleBtn.remove();
         this.removeBtn.remove();
         const bookIndex = findBookIndex(this);
+        library.splice(bookIndex, 1);
+    })
+}
+
+function addButtonsToCard(book) {
+    const statusBtn = createBtn(book, "status-btn", "Update Status");
+    const removeBtn = createBtn(book, "remove-btn", "Remove");
+
+    const btnDiv = document.createElement("div");
+    btnDiv.setAttribute("class", "btn-div");
+    book.bookCard.append(btnDiv);
+    btnDiv.append(statusBtn);
+    btnDiv.append(removeBtn);
+
+    statusBtn.addEventListener("click", (e) => {
+        book.toggleStatus();
+        book.bookStatusDiv.textContent = `Status: ${book.status}`;
+    })
+
+    removeBtn.addEventListener("click", (e) => {
+        book.bookCard.remove();
+        statusBtn.remove();
+        removeBtn.remove();
+        const bookIndex = findBookIndex(book);
         library.splice(bookIndex, 1);
     })
 }
@@ -106,19 +137,8 @@ function newBook(book) {
     newBook.bookPagesDiv.setAttribute("class", "book-pages-div");
     newBook.bookStatusDiv.setAttribute("class", "book-status-div");
 
-    createButtons(newBook);
+    addButtonsToCard(newBook);
     formDialog.hidePopover();
-}
-
-function createButtons(book) {
-    book.createToggleBtn();
-    book.createRemoveBtn();
-
-    book.btnDiv = document.createElement("div");
-    book.btnDiv.setAttribute("class", "btn-div");
-    book.bookCard.append(book.btnDiv);
-    book.btnDiv.append(book.toggleBtn);
-    book.btnDiv.append(book.removeBtn);
 }
 
 newBook(theHobbit);
