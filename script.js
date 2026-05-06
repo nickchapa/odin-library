@@ -1,5 +1,5 @@
 const body = document.querySelector("body");
-const addBookBtn = document.getElementById("add-book");
+const addBookBtn = document.querySelector("#add-book");
 const cardContainer = document.querySelector(".card-container");
 
 const newBookTitle = document.querySelector("#new-book-title");
