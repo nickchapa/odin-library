@@ -31,7 +31,6 @@ Book.prototype.getInfo = function() {
 Book.prototype.toggleStatus = function() {
     if (this.status === true) this.status = false;
     else this.status = true;
-    console.log(`toggled book: ${this.title} status: ${this.status}`);
 }
 
 Book.prototype.createToggleBtn = function() {
@@ -53,7 +52,6 @@ Book.prototype.createRemoveBtn = function() {
     this.removeBtn.textContent = "Remove";
 
     this.removeBtn.addEventListener("click", (e) => {
-        console.log(`remove btn clicked for ${this.title}`);
         this.bookCard.remove();
         this.toggleBtn.remove();
         this.removeBtn.remove();
@@ -64,7 +62,6 @@ Book.prototype.createRemoveBtn = function() {
 
 function findBookIndex(book){
     const bookIndex = library.findIndex((element) => element.id === book.id)
-    console.log(library[bookIndex].id);
     return bookIndex;
 }
 
