@@ -11,7 +11,7 @@ const formDialog = document.querySelector("#form-dialog");
 
 addBookBtn.addEventListener("click", (e) => {
     newBook();
-    event.preventDefault();
+    e.preventDefault();
 })
 
 const library = [];
