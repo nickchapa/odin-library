@@ -106,15 +106,19 @@ function newBook(book) {
     newBook.bookPagesDiv.setAttribute("class", "book-pages-div");
     newBook.bookStatusDiv.setAttribute("class", "book-status-div");
 
-    newBook.createToggleBtn();
-    newBook.createRemoveBtn();
-
-    newBook.btnDiv = document.createElement("div");
-    newBook.btnDiv.setAttribute("class", "btn-div");
-    newBook.bookCard.append(newBook.btnDiv);
-    newBook.btnDiv.append(newBook.toggleBtn);
-    newBook.btnDiv.append(newBook.removeBtn);
+    createButtons(newBook);
     formDialog.hidePopover();
+}
+
+function createButtons(book) {
+    book.createToggleBtn();
+    book.createRemoveBtn();
+
+    book.btnDiv = document.createElement("div");
+    book.btnDiv.setAttribute("class", "btn-div");
+    book.bookCard.append(book.btnDiv);
+    book.btnDiv.append(book.toggleBtn);
+    book.btnDiv.append(book.removeBtn);
 }
 
 newBook(theHobbit);
