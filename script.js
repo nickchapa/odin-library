@@ -31,6 +31,8 @@ Book.prototype.getInfo = function() {
 Book.prototype.toggleStatus = function() {
     if (this.status === true) this.status = false;
     else this.status = true;
+
+    this.bookStatusDiv.textContent = `Status: ${this.status}`;
 }
 
 Book.prototype.createToggleBtn = function() {
@@ -41,7 +43,6 @@ Book.prototype.createToggleBtn = function() {
 
     this.toggleBtn.addEventListener("click", (e) => {
         this.toggleStatus();
-        this.bookStatusDiv.textContent = `Status: ${this.status}`;
     })
 }
 
