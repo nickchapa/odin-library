@@ -62,8 +62,7 @@ Book.prototype.createRemoveBtn = function() {
 }
 
 function findBookIndex(book){
-    const bookIndex = library.findIndex((element) => element.id === book.id)
-    return bookIndex;
+    return bookIndex = library.findIndex((element) => element.id === book.id)
 }
 
 const theHobbit = new Book("The Hobbit", "J.R.R. Tolkien", 310, true);
