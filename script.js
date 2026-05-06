@@ -9,7 +9,6 @@ const newBookStatus = document.querySelector("#new-book-status");
 
 const formDialog = document.querySelector("#form-dialog");
 
-addBookBtn.textContent = "Add";
 addBookBtn.addEventListener("click", (e) => {
     newBook();
     event.preventDefault();
