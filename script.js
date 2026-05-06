@@ -9,6 +9,12 @@ const newBookStatus = document.querySelector("#new-book-status");
 
 const formDialog = document.querySelector("#form-dialog");
 
+addBookBtn.textContent = "Add";
+addBookBtn.addEventListener("click", (e) => {
+    newBook();
+    event.preventDefault();
+})
+
 const library = [];
 
 function Book(title, author, pages, status){
@@ -57,6 +63,12 @@ Book.prototype.createRemoveBtn = function() {
     })
 }
 
+function findBookIndex(book){
+    const bookIndex = library.findIndex((element) => element.id === book.id)
+    console.log(library[bookIndex].id);
+    return bookIndex;
+}
+
 const theHobbit = new Book("The Hobbit", "J.R.R. Tolkien", 310, true);
 
 const theFellowshipoftheRing = new Book("The Fellowship of the Ring", "J.R.R. Tolkien", 423, true);
@@ -64,27 +76,6 @@ const theFellowshipoftheRing = new Book("The Fellowship of the Ring", "J.R.R. To
 const theTwoTowers = new Book("The Two Towers", "J.R.R. Tolkien", 352, true);
 
 const theReturnoftheKing = new Book("The Return of the King", "J.R.R. Tolkien", 416, true);
-
-for (const book of library) {
-    book.bookCard = document.createElement("p");
-    book.bookCard.textContent = book.getInfo();
-    cardContainer.append(book.bookCard);
-    console.log(book.getInfo());
-    book.createToggleBtn();
-    book.createRemoveBtn();
-}
-
-function findBookIndex(book){
-    const bookIndex = library.findIndex((element) => element.id === book.id)
-    console.log(library[bookIndex].id);
-    return bookIndex;
-}
-
-addBookBtn.textContent = "Add";
-addBookBtn.addEventListener("click", (e) => {
-    newBook();
-    event.preventDefault();
-})
 
 function newBook(book) {
     let newBook;
