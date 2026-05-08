@@ -42,32 +42,6 @@ function createBtn(book, className, textContent) {
     return btn;
 }
 
-Book.prototype.createToggleBtn = function() {
-    this.toggleBtn = document.createElement("button");
-    this.toggleBtn.setAttribute("class", "status-btn");
-    this.bookCard.append(this.toggleBtn);
-    this.toggleBtn.textContent = "Update Status";
-
-    this.toggleBtn.addEventListener("click", (e) => {
-        this.toggleStatus();
-    })
-}
-
-Book.prototype.createRemoveBtn = function() {
-    this.removeBtn = document.createElement("button");
-    this.removeBtn.setAttribute("class", "remove-btn");
-    this.bookCard.append(this.removeBtn);
-    this.removeBtn.textContent = "Remove";
-
-    this.removeBtn.addEventListener("click", (e) => {
-        this.bookCard.remove();
-        this.toggleBtn.remove();
-        this.removeBtn.remove();
-        const bookIndex = findBookIndex(this);
-        library.splice(bookIndex, 1);
-    })
-}
-
 function addButtonsToCard(book) {
     const statusBtn = createBtn(book, "status-btn", "Update Status");
     const removeBtn = createBtn(book, "remove-btn", "Remove");
