@@ -29,8 +29,7 @@ Book.prototype.getInfo = function() {
 }
 
 Book.prototype.toggleStatus = function() {
-    if (this.status === true) this.status = false;
-    else this.status = true;
+    this.status = !this.status;
 }
 
 function createBtn(book, className, textContent) {
