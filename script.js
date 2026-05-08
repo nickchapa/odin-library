@@ -32,32 +32,32 @@ Book.prototype.toggleStatus = function() {
     this.status = !this.status;
 }
 
-function createBtn(book, className, textContent) {
+function createBtn(book, card, className, textContent) {
     const btn = document.createElement("button");
     btn.setAttribute("class", className)
-    book.bookCard.append(btn);
+    card.append(btn);
     btn.textContent = textContent;
 
     return btn;
 }
 
-function addButtonsToCard(book) {
-    const statusBtn = createBtn(book, "status-btn", "Update Status");
-    const removeBtn = createBtn(book, "remove-btn", "Remove");
+function addButtonsToCard(book, card, statusDiv) {
+    const statusBtn = createBtn(book, card, "status-btn", "Update Status");
+    const removeBtn = createBtn(book, card, "remove-btn", "Remove");
 
     const btnDiv = document.createElement("div");
     btnDiv.setAttribute("class", "btn-div");
-    book.bookCard.append(btnDiv);
+    card.append(btnDiv);
     btnDiv.append(statusBtn);
     btnDiv.append(removeBtn);
 
     statusBtn.addEventListener("click", (e) => {
         book.toggleStatus();
-        book.bookStatusDiv.textContent = `Status: ${book.status}`;
+        statusDiv.textContent = `Status: ${book.status}`;
     })
 
     removeBtn.addEventListener("click", (e) => {
-        book.bookCard.remove();
+        card.remove();
         statusBtn.remove();
         removeBtn.remove();
         const bookIndex = findBookIndex(book);
@@ -85,32 +85,30 @@ function newBook(book) {
     
     library.push(newBook);
 
-    newBook.bookCard = document.createElement("div");
-
-    newBook.bookTitleDiv = document.createElement("div");
-    newBook.bookAuthorDiv = document.createElement("div");
-    newBook.bookPagesDiv = document.createElement("div");
-    newBook.bookStatusDiv = document.createElement("div");
+    const bookCard = document.createElement("div");
+    const bookTitleDiv = document.createElement("div");
+    const bookAuthorDiv = document.createElement("div");
+    const bookPagesDiv = document.createElement("div");
+    const bookStatusDiv = document.createElement("div");
     
-    newBook.bookTitleDiv.textContent = `Title: ${newBook.title}`;
-    newBook.bookAuthorDiv.textContent = `Author: ${newBook.author}`;
-    newBook.bookPagesDiv.textContent = `Pages: ${newBook.pages}`;
-    newBook.bookStatusDiv.textContent = `Status: ${newBook.status}`;
+    bookTitleDiv.textContent = `Title: ${newBook.title}`;
+    bookAuthorDiv.textContent = `Author: ${newBook.author}`;
+    bookPagesDiv.textContent = `Pages: ${newBook.pages}`;
+    bookStatusDiv.textContent = `Status: ${newBook.status}`;
     
-    cardContainer.append(newBook.bookCard);
-    newBook.bookCard.append(newBook.bookTitleDiv);
-    newBook.bookCard.append(newBook.bookAuthorDiv);
-    newBook.bookCard.append(newBook.bookPagesDiv);
-    newBook.bookCard.append(newBook.bookStatusDiv);
+    cardContainer.append(bookCard);
+    bookCard.append(bookTitleDiv);
+    bookCard.append(bookAuthorDiv);
+    bookCard.append(bookPagesDiv);
+    bookCard.append(bookStatusDiv);
 
-    newBook.bookCard.setAttribute("class", "book-card");
+    bookCard.setAttribute("class", "book-card");
+    bookTitleDiv.setAttribute("class", "book-title-div");
+    bookAuthorDiv.setAttribute("class", "book-author-div");
+    bookPagesDiv.setAttribute("class", "book-pages-div");
+    bookStatusDiv.setAttribute("class", "book-status-div");
 
-    newBook.bookTitleDiv.setAttribute("class", "book-title-div");
-    newBook.bookAuthorDiv.setAttribute("class", "book-author-div");
-    newBook.bookPagesDiv.setAttribute("class", "book-pages-div");
-    newBook.bookStatusDiv.setAttribute("class", "book-status-div");
-
-    addButtonsToCard(newBook);
+    addButtonsToCard(newBook, bookCard, bookStatusDiv);
     formDialog.hidePopover();
 }
 
