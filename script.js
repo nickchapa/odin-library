@@ -32,7 +32,7 @@ Book.prototype.toggleStatus = function() {
     this.status = !this.status;
 }
 
-function createBtn(book, className, textContent) {
+function createBtn(className, textContent) {
     const btn = document.createElement("button");
     btn.setAttribute("class", className)
     btn.textContent = textContent;
@@ -41,8 +41,8 @@ function createBtn(book, className, textContent) {
 }
 
 function addButtonsToCard(book, card, statusDiv) {
-    const statusBtn = createBtn(book, "status-btn", "Update Status");
-    const removeBtn = createBtn(book, "remove-btn", "Remove");
+    const statusBtn = createBtn("status-btn", "Update Status");
+    const removeBtn = createBtn("remove-btn", "Remove");
 
     const btnDiv = document.createElement("div");
     btnDiv.setAttribute("class", "btn-div");
