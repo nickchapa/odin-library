@@ -10,7 +10,8 @@ const newBookStatus = document.querySelector("#new-book-status");
 const formDialog = document.querySelector("#form-dialog");
 
 addBookBtn.addEventListener("click", (e) => {
-    newBook();
+    const newBook = createBookObj();
+    renderBook(newBook);
     e.preventDefault();
 })
 
@@ -40,7 +41,7 @@ function createBtn(className, textContent) {
     return btn;
 }
 
-function addButtonsToCard(book, card, statusDiv) {
+function addButtonsToCard(book, card) {
     const statusBtn = createBtn("status-btn", "Update Status");
     const removeBtn = createBtn("remove-btn", "Remove");
 
@@ -52,7 +53,7 @@ function addButtonsToCard(book, card, statusDiv) {
 
     statusBtn.addEventListener("click", (e) => {
         book.toggleStatus();
-        statusDiv.textContent = `Status: ${book.status}`;
+        card.querySelector(".book-status-div").textContent = `Status: ${book.status}`;
     })
 
     removeBtn.addEventListener("click", (e) => {
@@ -76,14 +77,15 @@ const theTwoTowers = new Book("The Two Towers", "J.R.R. Tolkien", 352, true);
 
 const theReturnoftheKing = new Book("The Return of the King", "J.R.R. Tolkien", 416, true);
 
-function newBook(book) {
-    let newBook;
-    if(!book){
-        newBook = new Book(newBookTitle.value, newBookAuthor.value, newBookPages.value, newBookStatus.checked);
-    } else newBook = book;
-    
+function createBookObj() {
+    const newBook = new Book(newBookTitle.value, newBookAuthor.value, newBookPages.value, newBookStatus.checked);
+
     library.push(newBook);
 
+    return newBook;
+}
+
+function renderBook(newBook) {
     const bookCard = document.createElement("div");
     const bookTitleDiv = document.createElement("div");
     const bookAuthorDiv = document.createElement("div");
@@ -107,11 +109,11 @@ function newBook(book) {
     bookPagesDiv.setAttribute("class", "book-pages-div");
     bookStatusDiv.setAttribute("class", "book-status-div");
 
-    addButtonsToCard(newBook, bookCard, bookStatusDiv);
+    addButtonsToCard(newBook, bookCard);
     formDialog.hidePopover();
 }
 
-newBook(theHobbit);
-newBook(theFellowshipoftheRing);
-newBook(theTwoTowers);
-newBook(theReturnoftheKing);
+renderBook(theHobbit);
+renderBook(theFellowshipoftheRing);
+renderBook(theTwoTowers);
+renderBook(theReturnoftheKing);
