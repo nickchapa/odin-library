@@ -9,9 +9,17 @@ const newBookStatus = document.querySelector("#new-book-status");
 
 const formDialog = document.querySelector("#form-dialog");
 
+function resetFormDialog(){
+    newBookTitle.value = null;
+    newBookAuthor.value = null;
+    newBookPages.value = null;
+    newBookStatus.checked = null;
+}
+
 addBookBtn.addEventListener("click", (e) => {
     const newBook = createBookObj();
     renderBook(newBook);
+    resetFormDialog();
     e.preventDefault();
 })
 
