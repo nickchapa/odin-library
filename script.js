@@ -85,6 +85,8 @@ const theTwoTowers = new Book("The Two Towers", "J.R.R. Tolkien", 352, true);
 
 const theReturnoftheKing = new Book("The Return of the King", "J.R.R. Tolkien", 416, true);
 
+const tolkienBooks = [theHobbit, theFellowshipoftheRing, theTwoTowers, theReturnoftheKing];
+
 function createBookObj() {
     const newBook = new Book(newBookTitle.value, newBookAuthor.value, newBookPages.value, newBookStatus.checked);
 
@@ -121,7 +123,8 @@ function renderBook(newBook) {
     formDialog.hidePopover();
 }
 
-renderBook(theHobbit);
-renderBook(theFellowshipoftheRing);
-renderBook(theTwoTowers);
-renderBook(theReturnoftheKing);
+for(book of tolkienBooks){
+    library.push(book);
+    renderBook(book);
+    console.log(library);
+}
