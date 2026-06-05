@@ -25,20 +25,21 @@ addBookBtn.addEventListener("click", (e) => {
 
 const library = [];
 
-function Book(title, author, pages, status){
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.status = status;
-    this.id = crypto.randomUUID();
-}
+class Book {
+    constructor(title, author, pages, status) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.status = status;
+    }
 
-Book.prototype.getInfo = function() {
-    return `Title: ${this.title}, Author: ${this.author}, Pages: ${this.pages}, Read Status: ${this.status}`;
-}
+    getInfo() {
+        return `Title: ${this.title}, Author: ${this.author}, Pages: ${this.pages}, Read Status: ${this.status}`;
+    }
 
-Book.prototype.toggleStatus = function() {
-    this.status = !this.status;
+    toggleStatus() {
+        this.status = !this.status;
+    }
 }
 
 function createBtn(className, textContent) {
